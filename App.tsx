@@ -1,12 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import Login from './src/pages/login';
+import RootNavigation from './src/routes/root-navigation';
+import { NavigationContainer } from '@react-navigation/native';
 
 export default function App() {
   return (
-      <Login />
-    
-  );
+    <NavigationContainer>
+      <RootNavigation />
+    </NavigationContainer>
+   );
 }
 
 const styles = StyleSheet.create({

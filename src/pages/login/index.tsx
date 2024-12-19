@@ -1,20 +1,22 @@
 import React, { useState } from "react";
 
-import { 
+import {
     Text,
     View,
     Image,
     TextInput,
-    TouchableOpacity,   
+    TouchableOpacity,
 } from 'react-native';
 
 import { style } from "./styles";
 import Logo from '../../assets/logo.png'
 import { MaterialIcons, Octicons } from '@expo/vector-icons';
 import { themas } from "../../global/themes";
+import { useNavigation } from "@react-navigation/native";
 
-export default function Login (){
+export default function Login() {
     const [visible, setVisible] = useState(false);
+    const navigation = useNavigation();
 
     function toggleVisible() {
         setVisible(!visible);
@@ -23,19 +25,19 @@ export default function Login (){
 
     return (
         <View>
-             <View style={style.boxTop}>
-                <Image 
+            <View style={style.boxTop}>
+                <Image
                     source={Logo}
                     style={style.logo}
                     resizeMode="contain"
-                /> 
-                <Text style={style.text}>Bem-vindo!</Text>                       
+                />
+                <Text style={style.text}></Text>
             </View>
 
             <View style={style.boxMid}>
                 <Text style={style.titleInput}>ENDEREÇO DE E-MAIL</Text>
                 <View style={style.BoxInput}>
-                    <TextInput 
+                    <TextInput
                         style={style.input}
                     />
                     <MaterialIcons
@@ -46,9 +48,9 @@ export default function Login (){
                 </View>
                 <Text style={style.titleInput}>SENHA</Text>
                 <View style={style.BoxInput}>
-                    <TextInput 
+                    <TextInput
                         style={style.input}
-                        secureTextEntry={!visible}
+                        secureTextEntry={visible}
                     />
                     <Octicons
                         name={visible ? 'eye' : 'eye-closed'}
@@ -60,16 +62,18 @@ export default function Login (){
             </View>
 
             <View style={style.boxBottom}>
-                <TouchableOpacity style={style.button}>
+                <TouchableOpacity onPress={() => navigation.navigate('home')} style={style.button}>
                     <Text style={style.textButton}>Entrar</Text>
-                    </TouchableOpacity>
-            
-            <Text style={style.textBottom}>
-                Não tem conta?
-                <Text style={{color:themas.colors.primary}}>
-                    Crie agora!
+                </TouchableOpacity>
+
+                <View style={style.accountLink}>
+                    <Text style={style.textBottom}>
+                        Não tem conta?
                     </Text>
-            </Text>
+                    <Text onPress={() => navigation.navigate('register')} style={[{ color: themas.colors.primary }, {...style.textLinkButton}]}>
+                        Crie agora!
+                    </Text>
+                </View>
             </View>
         </View>
     )
