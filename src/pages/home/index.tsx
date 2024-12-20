@@ -1,5 +1,6 @@
 import React from "react";
 import { Image, ScrollView, Text, View } from "react-native";
+import BottomNavigation from "../../routes/bottom-navigation";
 // import Profile from '../../assets/profile.jpg';
 
 
