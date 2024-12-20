@@ -3,7 +3,6 @@ import React from "react";
 import Home from "../pages/home";
 import Extract from "../pages/extract";
 import Profile from "../pages/profile";
-import { NavigationContainer } from "@react-navigation/native";
 import { themas } from "../global/themes";
 import { MaterialIcons, Octicons } from '@expo/vector-icons';
 
