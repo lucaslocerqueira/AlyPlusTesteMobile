@@ -7,6 +7,7 @@ import {
     TextInput,
     TouchableOpacity,
     Alert,
+    ActivityIndicator,
 } from 'react-native';
 
 import { style } from "./styles";
@@ -20,6 +21,7 @@ import { URL_BASE } from "../../utils/utils";
 
 export default function Login() {
     const [visible, setVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
     const navigation = useNavigation<any>();
     const {
         control,
@@ -35,6 +37,7 @@ export default function Login() {
 
     const onSubmit = async (_data: any) => {
         try {
+            setLoading(true);
             const { email, password } = _data;
             const { status, data } = await axios.post(`${URL_BASE}/auth/login`, {
                 email,
@@ -51,6 +54,8 @@ export default function Login() {
                     text: 'OK',
                 }
             ])
+        } finally {
+            setLoading(false);
         }
 
     }
@@ -126,8 +131,12 @@ export default function Login() {
             </View>
 
             <View style={style.boxBottom}>
-                <TouchableOpacity onPress={handleSubmit(onSubmit)} style={style.button}>
-                    <Text style={style.textButton}>Entrar</Text>
+                <TouchableOpacity disabled={loading} onPress={handleSubmit(onSubmit)} style={style.button}>
+                    {
+                        loading ?
+                            <ActivityIndicator color={'white'} size={"large"} /> :
+                            <Text style={style.textButton}>Entrar</Text>
+                    }
                 </TouchableOpacity>
                 <View style={style.accountLink}>
                     <Text style={style.textBottom}>
