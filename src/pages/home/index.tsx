@@ -4,23 +4,23 @@ import BottomNavigation from "../../routes/bottom-navigation";
 // import Profile from '../../assets/profile.jpg';
 
 
-export default function Home() {
-
+export default function Home(props: any) {
+    console.log('entrou no login com as pros: ', props);
     const username: string = "Fulano";
     const balance: number = 10;
 
-    return(
+    return (
         <View>
-           <View style={{
+            <View style={{
                 width: '100%',
                 flexDirection: 'row',
                 justifyContent: 'space-between',
                 backgroundColor: 'red',
                 padding: 20,
 
-           }} >
+            }} >
                 <View>
-                    <Text>Olá, { username }!</Text>
+                    <Text>Olá, {username}!</Text>
                     <Text>R$ {balance} </Text>
                 </View>
 
@@ -31,11 +31,11 @@ export default function Home() {
                     borderRadius: '50%',
                     backgroundColor: 'grey'
                 }}></View>
-           </View>
+            </View>
 
-           <ScrollView style={{ padding: 10 }}>
+            <ScrollView style={{ padding: 10 }}>
                 <Text>AQUI VEM O CONTEÚDO</Text>
-           </ScrollView>
+            </ScrollView>
 
         </View>
     );

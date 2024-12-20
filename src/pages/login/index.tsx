@@ -13,14 +13,14 @@ import { style } from "./styles";
 import Logo from '../../assets/logo.png'
 import { MaterialIcons, Octicons } from '@expo/vector-icons';
 import { themas } from "../../global/themes";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationProp, NavigationState, ParamListRoute, useNavigation } from "@react-navigation/native";
 import { Controller, useForm } from "react-hook-form";
 import axios from "axios";
 import { URL_BASE } from "../../utils/utils";
 
 export default function Login() {
     const [visible, setVisible] = useState(false);
-    const navigation = useNavigation();
+    const navigation = useNavigation<any>();
     const {
         control,
         handleSubmit,
@@ -42,7 +42,7 @@ export default function Login() {
             });
 
             if (status === 200 || status === 201) {
-                navigation.navigate('home');
+                navigation.navigate('home', { user: data });
             }
 
         } catch (error) {
