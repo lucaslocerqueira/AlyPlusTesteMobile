@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Alert, Text, View } from "react-native";
 import { TouchableOpacity } from "react-native";
 import { MaterialIcons } from '@expo/vector-icons';
 import { themas } from "../global/themes";
@@ -9,7 +9,13 @@ export default function CardButton({ color, title, onClick, icon }) {
     return (
         <TouchableOpacity style={{
             marginBottom: 40
-        }} onPress={onClick}>
+        }} onPress={() => {
+            Alert.alert('EM DESENVOLVIMENTO', 'Aguarde novas atualizações', [
+                {
+                    text: 'OK',
+                }
+            ])
+        }}>
             <View style={{
                 height: 50,
                 flexDirection: 'row',
